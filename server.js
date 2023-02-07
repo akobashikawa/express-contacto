@@ -24,11 +24,12 @@ app.get('/', (req, res) => {
 app.post('/enviar-formulario', (req, res) => {
     let nombre = req.body.nombre;
     let email = req.body.email;
+    let mensaje = req.body.mensaje;
     // console.log(nombre);
     // console.log(email);
     // guardar nombre en base de datos
     // res.send(`Hola ${nombre}, pronto te escribiré a tu email: ${email}`);
-    res.render('saludo', {nombre: nombre, email: email});
+    res.render('saludo', {nombre: nombre, email: email, mensaje: mensaje});
 });
 
 
