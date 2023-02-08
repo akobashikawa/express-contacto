@@ -22,7 +22,10 @@
             </p>
         </form>
 
-        <p>{{saludo}}</p>
+        <div v-if="saludo">
+            <p>{{saludo}}</p>
+            <p>Tu mensaje: <i>{{mensaje}}</i></p>
+        </div>
         
     </div>
 
