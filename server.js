@@ -9,6 +9,8 @@ const app = express();
 // use env variable to define tcp/ip port with a default
 const PORT = process.env.PORT || 3000
 
+app.use(express.static('public'));
+
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
@@ -17,9 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // ENDPOINTS
 
-app.get('/', (req, res) => {
-    res.render('contacto');
-});
+// app.get('/', (req, res) => {
+//     res.render('contacto');
+// });
 
 app.post('/enviar-formulario', (req, res) => {
     let nombre = req.body.nombre;
