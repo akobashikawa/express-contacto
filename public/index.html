@@ -13,12 +13,12 @@
         <p>
             Hola, envíanos tus datos para saber más.
         </p>
-        <form action="/enviar-formulario" method="POST">
-            <input type="text" name="nombre" placeholder="Tu nombre" class="form-control">
-            <input type="text" name="email" placeholder="Email de contacto" class="form-control">
-            <textarea name="mensaje" rows="5" class="form-control" placeholder="Tu mensaje"></textarea>
+        <form>
+            <input type="text" name="nombre" placeholder="Tu nombre" class="form-control" v-model="nombre">
+            <input type="text" name="email" placeholder="Email de contacto" class="form-control" v-model="email">
+            <textarea name="mensaje" rows="5" class="form-control" placeholder="Tu mensaje" v-model="mensaje"></textarea>
             <p class="mt-3">
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="button" class="btn btn-primary" @click="enviar">Enviar</button>
             </p>
         </form>
 
@@ -27,6 +27,7 @@
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>
         const { createApp } = Vue;
@@ -34,8 +35,39 @@
         createApp({
             data() {
                 return {
-                    saludo: 'Hola Vue'
+                    nombre: '',
+                    email: '',
+                    mensaje: '',
+                    saludo: ''
                 };
+            },
+
+            methods: {
+                enviar() {
+                    const nombre = this.nombre.trim();
+                    const email = this.email.trim();
+                    const mensaje = this.mensaje.trim();
+
+                    console.log(nombre);
+                    console.log(email);
+                    console.log(mensaje);
+
+                    const body = {
+                        nombre: nombre,
+                        email: email,
+                        mensaje: mensaje,
+                    };
+                    axios.post('/api/enviar-formulario', body)
+                        .then(response => {
+                            const data = response.data;
+                            console.log(data);
+                            this.saludo = data.saludo;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            this.saludo = 'Error';
+                        });
+                }
             }
         }).mount('#app');
     </script>
