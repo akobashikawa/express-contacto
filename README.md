@@ -1,6 +1,6 @@
 # Formulario de Contacto
 
-Ejemplo de formulario de contacto usando NodeJS.
+Ejemplo de formulario de contacto usando ExpressJS.
 
 ## Instalación
 
