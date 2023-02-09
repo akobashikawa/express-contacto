@@ -39,7 +39,7 @@ app.post('/api/enviar-formulario', (req, res) => {
     const  email = req.body.email;
     const  mensaje = req.body.mensaje;
     const saludo = `Hola ${nombre}, pronto te escribiré a tu email: ${email}`;
-    res.json({ saludo: saludo });
+    res.json({ saludo, mensaje});
 });
 
 
